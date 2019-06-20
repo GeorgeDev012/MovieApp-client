@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Result } from './models/result.model';
+import { ResultService } from './services/result.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front-end';
+  title = 'Movies';
+  results: Result[];
+
+  constructor(private resultService: ResultService) { }
+
+  ngOnInit() {
+    this
+      .resultService
+      .getResults()
+      .subscribe(data => {
+        this.results = data.results;
+      })
+  }
 }
