@@ -1,0 +1,21 @@
+
+<div class="item poster card" *ngFor="let result of results">
+    <div class="image_content">
+        <img class="poster" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2{{ result.poster_path }}" alt="No image to display.">
+    </div>
+    <div class="info">
+        <div class="wrapper">
+            <div></div>
+            <div class="flex">
+                <a id="movie_{{ result.id }}" class="title" href="/movie/{{ result.id }}" title="{{ result.original_title }}"></a>
+                <span>{{ result.release_date }}</span>
+            </div>
+        </div>
+        <p class="overview">
+            {{ (result.overview | slice:0:200) + (result.overview.length > 200 ? '...' : '') }}
+        </p>
+        <p class="view_more">
+            <a id="movie_{{ result.id }}" href="/movie/{{ result.id }}" title="{{ result.original_title }}">More info</a>
+        </p>
+    </div>
+</div>

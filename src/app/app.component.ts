@@ -9,16 +9,4 @@ import { ResultService } from './services/result.service';
 })
 export class AppComponent {
   title = 'Movies';
-  results: Result[];
-
-  constructor(private resultService: ResultService) { }
-
-  ngOnInit() {
-    this
-      .resultService
-      .getResults()
-      .subscribe(data => {
-        this.results = data.results;
-      })
-  }
 }

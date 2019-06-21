@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResultService {
 
-  url = ''
+  url = '';
   constructor(private http: HttpClient) { }
 
   getResults() {
