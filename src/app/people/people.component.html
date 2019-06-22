@@ -1,0 +1,27 @@
+<div class="album py-5">
+        <div class="container">
+          <h1>Popular People</h1>
+          <div class="row">
+            <div class="col-md-3" *ngFor="let result of results">
+              <div class="card mb-3 shadow-sm">
+                <img class="poster" src="https://image.tmdb.org/t/p/w235_and_h235_face{{ result.profile_path }}" alt="No image to display.">
+                <div class="card-body">
+                  <p class="card-text">{{ result.name }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <p>Popularity:</p>
+                      <p>{{ result.popularity }}</p>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center" *ngFor="let movie of result.known_for">
+                      <small>{{ movie.title }}</small>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="/person/{{ result.id }}">More info</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

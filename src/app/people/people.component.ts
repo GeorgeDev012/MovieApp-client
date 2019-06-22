@@ -5,12 +5,12 @@ import { ResultService } from '../services/result.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.component.html'
+  templateUrl: 'people.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class PeopleComponent implements OnInit {
   results: Result[];
-  uri: string = '';
+  uri: string;
 
   constructor(private resultService: ResultService) { }
 
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
       .getResults(this.uri)
       .subscribe(data => {
         this.results = data.results;
+        console.log(this.results);
       })
   }
 }

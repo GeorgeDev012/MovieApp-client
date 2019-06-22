@@ -5,10 +5,10 @@ import { ResultService } from '../services/result.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.component.html'
+  templateUrl: 'upcoming.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class UpcomingComponent implements OnInit {
   results: Result[];
   uri: string = '';
 

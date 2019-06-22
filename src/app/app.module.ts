@@ -8,12 +8,16 @@ import { MovieService } from './services/movie.service';
 import { ResultService } from './services/result.service';
 import { HomeComponent } from './home/home.component';
 import { PopularComponent } from './popular/popular.component';
+import { UpcomingComponent } from './upcoming/upcoming.component';
+import { PeopleComponent } from './people/people.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PopularComponent
+    PopularComponent,
+    UpcomingComponent,
+    PeopleComponent
   ],
   imports: [
     BrowserModule,
