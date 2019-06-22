@@ -4,11 +4,11 @@ import { Result } from '../models/result.model';
 import { ResultService } from '../services/result.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.component.html'
+    selector: 'app-popular',
+    templateUrl: 'popular.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class PopularComponent implements OnInit {
     results: Result[];
     uri: string;
 

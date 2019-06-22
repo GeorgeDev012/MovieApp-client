@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { MovieService } from './services/movie.service';
 import { ResultService } from './services/result.service';
 import { HomeComponent } from './home/home.component';
+import { PopularComponent } from './popular/popular.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PopularComponent
   ],
   imports: [
     BrowserModule,

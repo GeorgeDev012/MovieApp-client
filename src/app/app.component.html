@@ -7,15 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" (click)="showDropdown()" href="#" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle" (click)="showDropdown()" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
                 </a>
                 <div class="dropdown-menu" [ngClass]="{'show': toggleFlag}" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Top rated</a>
-                    <a class="dropdown-item" href="#">Most popular</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" routerLink="/" (click)="showDropdown()">Top rated</a>
+                    <a class="dropdown-item" routerLink="/popular" (click)="showDropdown()">Most popular</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -39,5 +37,7 @@
     </div>
 </nav>
 <main>
-    <app-home [ngClass]="{'bg-light': changeTheme, 'bg-dark': !changeTheme}"></app-home>
+    <div [ngStyle]="{'background-color': themeColor}">
+        <router-outlet></router-outlet>
+    </div>
 </main>

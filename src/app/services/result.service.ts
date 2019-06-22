@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResultService {
 
-  url = '';
+  
   constructor(private http: HttpClient) { }
 
-  getResults() {
+  getResults(url) {
     return this
             .http
-            .get(this.url);
+            .get(url);
   }
 }

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Result } from './models/result.model';
-import { ResultService } from './services/result.service';
+import { Component, ViewChild } from '@angular/core';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,7 @@ export class AppComponent {
   public title = 'Movies';
   public toggleFlag = false;
   public changeTheme = false;
+  themeColor = '#eeeeee';
 
   public showDropdown() {
     this.toggleFlag = !this.toggleFlag;
@@ -18,6 +18,12 @@ export class AppComponent {
 
   public onInputChange() {
     this.changeTheme = !this.changeTheme;
+    this.setBackgroundColor();
+  }
+
+  private setBackgroundColor() {
+    if(this.themeColor === '#d2f8d2') this.themeColor = '#eeeeee';
+    else this.themeColor = '#d2f8d2';
   }
 
 }
