@@ -10,7 +10,7 @@ import { ResultService } from '../services/result.service';
 
 export class HomeComponent implements OnInit {
     results: Result[];
-  
+    
     constructor(private resultService: ResultService) { }
   
     ngOnInit() {

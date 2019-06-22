@@ -8,5 +8,16 @@ import { ResultService } from './services/result.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Movies';
+  public title = 'Movies';
+  public toggleFlag = false;
+  public changeTheme = false;
+
+  public showDropdown() {
+    this.toggleFlag = !this.toggleFlag;
+  }
+
+  public onInputChange() {
+    this.changeTheme = !this.changeTheme;
+  }
+
 }
