@@ -11,7 +11,23 @@
                             {{ (result.overview | slice:0:100) + (result.overview.length > 100 ? '...' : '') }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <p>Score:</p>
-                            <p>{{ result.vote_average }}</p>
+                            <div *ngFor="let Star of [2,4,6,8,10]">
+                                <div [ngSwitch]="[result.vote_average] >= Star">
+                                    <div *ngSwitchCase="true">
+                                        <img src="..\..\assets\images\star.png" class="star" />
+                                    </div>
+                                    <div *ngSwitchCase="false">
+                                        <div [ngSwitch]="[result.vote_average] >= (Star-1)">
+                                            <div *ngSwitchCase="true">
+                                                <img src="..\..\assets\images\star-half.png" class="star" />
+                                            </div>
+                                            <div *ngSwitchCase="false">
+                                                <img src="..\..\assets\images\star-unfilled.png" class="star" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">

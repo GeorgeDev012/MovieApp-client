@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Result } from '../models/result.model';
-import { ResultService } from '../services/result.service';
+import { Result } from '../_models/result.model';
+import { ResultService } from '../_services/result.service';
 
 @Component({
     selector: 'app-popular',
@@ -10,7 +10,7 @@ import { ResultService } from '../services/result.service';
 
 export class PopularComponent implements OnInit {
     results: Result[];
-    uri: string;
+    uri: string = '';
 
     constructor(private resultService: ResultService) { }
   

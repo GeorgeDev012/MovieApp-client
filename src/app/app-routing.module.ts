@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'popular', component: PopularComponent },
   {path: 'upcoming', component: UpcomingComponent },
   {path: 'people', component: PeopleComponent },
+  {path: 'people/:id', component: PeopleComponent },
 ];
 
 @NgModule({
