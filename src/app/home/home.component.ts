@@ -11,6 +11,9 @@ import { ResultService } from '../_services/result.service';
 export class HomeComponent implements OnInit {
   results: Result[];
   uri: string = '';
+  page: number = 1;
+  totalResults: number;
+
 
   constructor(private resultService: ResultService) { }
 
@@ -20,6 +23,15 @@ export class HomeComponent implements OnInit {
       .getResults(this.uri)
       .subscribe(data => {
         this.results = data.results;
+        this.totalResults = data.total_results;
       })
+  }
+
+  onPageChange(event) {
+    this.resultService
+        .getResults(this.uri  + '&page=' + this.page)
+        .subscribe(data => {
+            this.results = data.results;
+        });
   }
 }

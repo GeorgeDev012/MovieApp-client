@@ -11,36 +11,38 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PeopleComponent implements OnInit {
     results: Result[];
-    items = [];
     pageOfItems: Array<any>;
-    @Input() pageSize = 20;
+    pageSize = 20;
+    totalResults: number;
+    page = 1;
     uri: string = '';
 
     constructor(private resultService: ResultService, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.resultService
-            .getResults(this.uri)
+            .getResults(this.uri  + '&page=' + this.page)
             .subscribe(data => {
                 this.results = data.results;
+                this.totalResults = data.total_results;
             });
         
         this.route.params.subscribe(params => {
             const page = params['id'];
             this.resultService
-            .getResults(this.uri + page)
+            .getResults(this.uri + '&page=' + this.page)
             .subscribe(data => {
                 this.results = data.results;
-                this.items = data.results;
-                for(let i = 0; i < 20; i++) {
-                    //this.items.push(data.results[i]);
-                }
-                //this.items = Array(data.total_results).fill(0).map(x => ({ name: data.results.name}));
-            });
+            })
         });
     }
-
-    onChangePage(pageOfItems: Array<any>) {
-        this.pageOfItems = pageOfItems;
+    
+    onPageChange(event) {
+        this.resultService
+            .getResults(this.uri  + '&page=' + this.page)
+            .subscribe(data => {
+                this.results = data.results;
+            });
     }
+
 }

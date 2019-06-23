@@ -11,6 +11,8 @@ import { PopularComponent } from './popular/popular.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { PeopleComponent } from './people/people.component';
 import { JwPaginationComponent } from 'jw-angular-pagination'
+import { LoginComponent } from './login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { JwPaginationComponent } from 'jw-angular-pagination'
     PopularComponent,
     UpcomingComponent,
     PeopleComponent,
+    LoginComponent,
     JwPaginationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule
   ],
   providers: [
     MovieService,

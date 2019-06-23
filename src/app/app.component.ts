@@ -10,7 +10,8 @@ export class AppComponent {
   public title = 'Movies';
   public toggleFlag = false;
   public changeTheme = false;
-  themeColor = '#eeeeee';
+  public isExpanded = false;
+  public themeColor = '#eeeeee';
 
   public showDropdown() {
     this.toggleFlag = !this.toggleFlag;

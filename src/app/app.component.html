@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark" [ngClass]="{'bg-primary': changeTheme, 'bg-info': !changeTheme}">
     <a class="navbar-brand" routerLink="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isExpanded" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" (click)="showDropdown()" id="navbarDropdown" role="button"
@@ -37,8 +37,8 @@
         </ul>
     </div>
 </nav>
-<main>
-    <div [ngStyle]="{'background-color': themeColor}">
+<main [ngStyle]="{'background-color': themeColor}">
+    <div>
         <router-outlet></router-outlet>
     </div>
 </main>

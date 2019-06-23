@@ -29,7 +29,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a id="movie_{{ result.id }}" href="/movie/{{ result.id }}" title="{{ result.original_title }}">More info</a>
+                    <a id="movie_{{ result.id }}" href="/movie/{{ result.id }}" title="{{ result.title }}">More info</a>
                 </div>
                 <small class="text-muted">{{ result.title }}</small>
               </div>
@@ -38,4 +38,8 @@
         </div>
       </div>
     </div>
+</div>
+
+<div class="card align-items-center">
+    <ngb-pagination [collectionSize]="[totalResults]" [(page)]="page" [maxSize]="5" [pageSize]="20" [rotate]="true" [boundaryLinks]="true" (pageChange)="onPageChange($event)"></ngb-pagination>
 </div>
