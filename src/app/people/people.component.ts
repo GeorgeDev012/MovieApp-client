@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Result } from '../_models/result.model';
-import { ResultService } from '../_services/result.service';
+import { RequestService } from '../_services/request.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,11 +17,11 @@ export class PeopleComponent implements OnInit {
     page = 1;
     uri: string = '';
 
-    constructor(private resultService: ResultService, private route: ActivatedRoute) { }
+    constructor(private requestService: RequestService, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.resultService
-            .getResults(this.uri  + '&page=' + this.page)
+        this.requestService
+            .getData(this.uri  + '&page=' + this.page)
             .subscribe(data => {
                 this.results = data.results;
                 this.totalResults = data.total_results;
@@ -29,8 +29,8 @@ export class PeopleComponent implements OnInit {
         
         this.route.params.subscribe(params => {
             const page = params['id'];
-            this.resultService
-            .getResults(this.uri + '&page=' + this.page)
+            this.requestService
+            .getData(this.uri + '&page=' + this.page)
             .subscribe(data => {
                 this.results = data.results;
             })
@@ -38,8 +38,8 @@ export class PeopleComponent implements OnInit {
     }
     
     onPageChange(event) {
-        this.resultService
-            .getResults(this.uri  + '&page=' + this.page)
+        this.requestService
+            .getData(this.uri  + '&page=' + this.page)
             .subscribe(data => {
                 this.results = data.results;
             });

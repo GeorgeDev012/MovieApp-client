@@ -1,0 +1,24 @@
+<div class="p-4 p-md-5 text-dark">
+    <div class="col-md-6">
+        <h1 class="display-4 font-italic">{{ movie.title }}</h1>
+        <p class="lead my-3">{{ movie.overview }}</p>
+    </div>
+    <hr />
+    <div class="row col-md-10">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let image of images | slice:0:3">
+            <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{image.file_path}}" alt="No image."
+                style="margin-top: 20px">
+        </div>
+        <div class="column">
+            <button style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
+                class="text-primary font-weight-bold" (click)="show = !show">Load all images...</button>
+            
+            <div *ngIf="show" class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let image of images | slice:3">
+                    <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{image.file_path}}" alt="No image."
+                        style="margin-top: 20px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

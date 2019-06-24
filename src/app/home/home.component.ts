@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Result } from '../_models/result.model';
-import { ResultService } from '../_services/result.service';
+import { RequestService } from '../_services/request.service';
+import { MovieService } from '../_services/movie.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,23 +17,25 @@ export class HomeComponent implements OnInit {
   totalResults: number;
 
 
-  constructor(private resultService: ResultService) { }
+  constructor(private requestService: RequestService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this
-      .resultService
-      .getResults(this.uri)
+      .requestService
+      .getData(this.uri)
       .subscribe(data => {
         this.results = data.results;
         this.totalResults = data.total_results;
       })
   }
 
-  onPageChange(event) {
-    this.resultService
-        .getResults(this.uri  + '&page=' + this.page)
+  onPageChange() {
+    this.requestService
+        .getData(this.uri  + '&page=' + this.page)
         .subscribe(data => {
             this.results = data.results;
         });
   }
+
+  
 }

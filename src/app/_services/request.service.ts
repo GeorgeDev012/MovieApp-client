@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ResultService {
+export class RequestService {
 
   
   constructor(private http: HttpClient) { }
 
-  getResults(url) {
+  getData(url) {
     return this
             .http
             .get(url);

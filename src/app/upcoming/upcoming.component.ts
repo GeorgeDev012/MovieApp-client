@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Result } from '../_models/result.model';
-import { ResultService } from '../_services/result.service';
+import { RequestService } from '../_services/request.service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,12 @@ export class UpcomingComponent implements OnInit {
   page: number = 1;
   totalResults: number;
 
-  constructor(private resultService: ResultService) { }
+  constructor(private requestService: RequestService) { }
 
   ngOnInit() {
     this
-      .resultService
-      .getResults(this.uri)
+      .requestService
+      .getData(this.uri)
       .subscribe(data => {
         this.results = data.results;
         this.totalResults = data.total_results;
@@ -27,8 +27,8 @@ export class UpcomingComponent implements OnInit {
   }
 
   onPageChange(event) {
-    this.resultService
-        .getResults(this.uri  + '&page=' + this.page)
+    this.requestService
+        .getData(this.uri  + '&page=' + this.page)
         .subscribe(data => {
             this.results = data.results;
         });
