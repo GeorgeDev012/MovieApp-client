@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Result } from '../_models/result.model';
+import { Result, Statistics } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-upcoming',
   templateUrl: 'upcoming.component.html'
 })
 
 export class UpcomingComponent implements OnInit {
-  results: Result[];
+  statistics: Statistics;
   uri: string = '';
   page: number = 1;
   totalResults: number;
@@ -21,8 +21,8 @@ export class UpcomingComponent implements OnInit {
       .requestService
       .getData(this.uri)
       .subscribe(data => {
-        this.results = data.results;
-        this.totalResults = data.total_results;
+        this.statistics = data as Statistics;
+        this.totalResults = this.statistics.total_results
       })
   }
 
@@ -30,7 +30,7 @@ export class UpcomingComponent implements OnInit {
     this.requestService
         .getData(this.uri  + '&page=' + this.page)
         .subscribe(data => {
-            this.results = data.results;
+            this.statistics = data as Statistics;
         });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Result } from '../_models/result.model';
+import { Result, Statistics } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RequestService } from '../_services/request.service';
 })
 
 export class PopularComponent implements OnInit {
-    results: Result[];
+    statistics: Statistics;
     uri: string = '';
     totalResults: number;
     page: number = 1;
@@ -21,8 +21,8 @@ export class PopularComponent implements OnInit {
         .requestService
         .getData(this.uri)
         .subscribe(data => {
-          this.results = data.results;
-          this.totalResults = data.total_results;
+          this.statistics = data as Statistics;
+          this.totalResults = this.statistics.total_results;
         })
     }
 
@@ -30,7 +30,7 @@ export class PopularComponent implements OnInit {
       this.requestService
           .getData(this.uri  + '&page=' + this.page)
           .subscribe(data => {
-              this.results = data.results;
+            this.statistics = data as Statistics;
           });
     }
 

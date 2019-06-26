@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Result } from '../_models/result.model';
+import { Result, Statistics } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
-import { MovieService } from '../_services/movie.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class HomeComponent implements OnInit {
-  results: Result[];
+  statistics: Statistics;
   uri: string = '';
   page: number = 1;
   totalResults: number;
@@ -24,8 +23,8 @@ export class HomeComponent implements OnInit {
       .requestService
       .getData(this.uri)
       .subscribe(data => {
-        this.results = data.results;
-        this.totalResults = data.total_results;
+        this.statistics = data as Statistics;
+        this.totalResults = this.statistics.total_results;
       })
   }
 
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.requestService
         .getData(this.uri  + '&page=' + this.page)
         .subscribe(data => {
-            this.results = data.results;
+            this.statistics = data as Statistics;
         });
   }
 

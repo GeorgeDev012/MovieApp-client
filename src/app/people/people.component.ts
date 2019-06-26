@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Result } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
 import { ActivatedRoute } from '@angular/router';
+import { PeoplesStatistics } from '../_models/people.model';
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-people',
     templateUrl: 'people.component.html'
 })
 
 export class PeopleComponent implements OnInit {
-    results: Result[];
+    statistics: PeoplesStatistics;
     pageOfItems: Array<any>;
     pageSize = 20;
     totalResults: number;
@@ -23,8 +23,8 @@ export class PeopleComponent implements OnInit {
         this.requestService
             .getData(this.uri  + '&page=' + this.page)
             .subscribe(data => {
-                this.results = data.results;
-                this.totalResults = data.total_results;
+                this.statistics = data as PeoplesStatistics;
+                this.totalResults = this.statistics.total_results;
             });
         
         this.route.params.subscribe(params => {
@@ -32,7 +32,7 @@ export class PeopleComponent implements OnInit {
             this.requestService
             .getData(this.uri + '&page=' + this.page)
             .subscribe(data => {
-                this.results = data.results;
+                this.statistics = data as PeoplesStatistics;
             })
         });
     }
@@ -41,7 +41,7 @@ export class PeopleComponent implements OnInit {
         this.requestService
             .getData(this.uri  + '&page=' + this.page)
             .subscribe(data => {
-                this.results = data.results;
+                this.statistics = data as PeoplesStatistics;
             });
     }
 

@@ -1,21 +1,48 @@
-<div class="p-4 p-md-5 text-dark">
+<div class="column p-4 p-md-5 text-dark">
     <div class="col-md-6">
-        <h1 class="display-4 font-italic">{{ movie.title }}</h1>
-        <p class="lead my-3">{{ movie.overview }}</p>
+        <h1 class="display-4 font-italic">{{ movie?.title }}</h1>
+        <p class="lead my-3">{{ movie?.overview }}</p>
+        <div *ngFor="let person of people?.crew">
+            <p *ngIf="isDirector(person.job)" class="lead mb-0 text-dark font-weight-bold">Director: {{ person.name }}
+            </p>
+        </div>
     </div>
     <hr />
-    <div class="row col-md-10">
-        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let image of images | slice:0:3">
-            <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{image.file_path}}" alt="No image."
+    <p class="lead mb-0 text-dark font-weight-bold">Cast</p>
+    <br>
+    <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" *ngFor="let person of people?.cast | slice:0:6">
+            <div class="column">
+                <img src="https://image.tmdb.org/t/p/w138_and_h175_face{{ person.profile_path }}" alt="No image.">
+                <p>{{ person.name }}</p>
+            </div>
+        </div>
+        <button
+            style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
+            class="text-primary font-weight-bold" (click)="fullCast = !fullCast">Full cast...</button>
+        <br>
+        <div *ngIf="fullCast" class="row">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" *ngFor="let person of people?.cast | slice:6">
+                <div class="column">
+                    <img src="https://image.tmdb.org/t/p/w138_and_h175_face{{ person.profile_path }}" alt="No image.">
+                    <p>{{ person.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let poster of images?.posters | slice:0:4">
+            <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{ poster.file_path }}" alt="No image."
                 style="margin-top: 20px">
         </div>
         <div class="column">
-            <button style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
+            <button
+                style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
                 class="text-primary font-weight-bold" (click)="show = !show">Load all images...</button>
-            
+
             <div *ngIf="show" class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let image of images | slice:3">
-                    <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{image.file_path}}" alt="No image."
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let poster of images?.posters | slice:4">
+                    <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{ poster.file_path }}" alt="No image."
                         style="margin-top: 20px">
                 </div>
             </div>

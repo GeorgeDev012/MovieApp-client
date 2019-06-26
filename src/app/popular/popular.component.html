@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Most Popular Movies</h1>
         <div class="row">
-            <div class="col-md-4" *ngFor="let result of results">
+            <div class="col-md-4" *ngFor="let result of statistics?.results">
                 <div class="card mb-4 shadow-sm">
                     <img class="poster" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ result.poster_path }}"
                         alt="No image to display.">

@@ -1,3 +1,9 @@
+export interface BelongsToCollection {
+    id: number;
+    name: string;
+    poster_path: string;
+    backdrop_path: string;
+}
 
 export interface Genre {
     id: number;
@@ -24,7 +30,7 @@ export interface SpokenLanguage {
 export interface Movie {
     adult: boolean;
     backdrop_path: string;
-    belongs_to_collection?: any;
+    belongs_to_collection: BelongsToCollection;
     budget: number;
     genres: Genre[];
     homepage: string;
@@ -34,7 +40,7 @@ export interface Movie {
     original_title: string;
     overview: string;
     popularity: number;
-    poster_path?: any;
+    poster_path: string;
     production_companies: ProductionCompany[];
     production_countries: ProductionCountry[];
     release_date: string;

@@ -16,7 +16,7 @@ export interface Result {
     release_date: string;
 }
 
-export interface RootObject {
+export interface Statistics {
     page: number;
     total_results: number;
     total_pages: number;

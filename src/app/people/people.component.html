@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Popular People</h1>
         <div class="row">
-            <div class="col-md-3" *ngFor="let result of results">
+            <div class="col-md-3" *ngFor="let result of statistics?.results">
                 <div class="card mb-3 shadow-sm">
                     <img class="poster" src="https://image.tmdb.org/t/p/w235_and_h235_face{{ result.profile_path }}"
                         alt="No image to display.">
