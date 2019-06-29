@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RequestService } from '../_services/request.service';
 import { ActivatedRoute } from '@angular/router';
 import { PeoplesStatistics } from '../_models/people.model';
+import { ApiKeyService } from '../_services/apikey.service';
 
 @Component({
     selector: 'app-people',
@@ -15,31 +16,22 @@ export class PeopleComponent implements OnInit {
     pageSize = 20;
     totalResults: number;
     page = 1;
-    uri: string = '';
+    uri: string = 'https://api.themoviedb.org/3/person/popular';
 
-    constructor(private requestService: RequestService, private route: ActivatedRoute) { }
+    constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiKeyService) { }
 
     ngOnInit() {
         this.requestService
-            .getData(this.uri  + '&page=' + this.page)
+            .getData(this.uri + this.apiKeyService.getApiKey() + '&page=' + this.page)
             .subscribe(data => {
                 this.statistics = data as PeoplesStatistics;
                 this.totalResults = this.statistics.total_results;
             });
-        
-        this.route.params.subscribe(params => {
-            const page = params['id'];
-            this.requestService
-            .getData(this.uri + '&page=' + this.page)
-            .subscribe(data => {
-                this.statistics = data as PeoplesStatistics;
-            })
-        });
     }
     
     onPageChange(event) {
         this.requestService
-            .getData(this.uri  + '&page=' + this.page)
+            .getData(this.uri + this.apiKeyService.getApiKey() + '&page=' + this.page)
             .subscribe(data => {
                 this.statistics = data as PeoplesStatistics;
             });

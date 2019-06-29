@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { MovieComponent } from './movie/movie.component';
+import { ApiKeyService } from './_services/apikey.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MovieComponent } from './movie/movie.component';
   providers: [
     MovieService,
     RequestService,
+    ApiKeyService
   ],
   bootstrap: [AppComponent]
 })

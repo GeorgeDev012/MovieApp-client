@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../_models/movie.model';
 import { Poster, Images } from '../_models/images.model';
 import { Credits } from '../_models/credits.model';
+import { ApiKeyService } from '../_services/apikey.service';
 
 @Component({
   selector: 'app-movie',
@@ -17,11 +18,10 @@ export class MovieComponent implements OnInit {
   people: Credits;
   movieUri: string = 'https://api.themoviedb.org/3/movie/';
   movieNumber: number;
-  apiKey: string = '';
   page: number = 1;
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute) { }
+  constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiKeyService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -29,17 +29,17 @@ export class MovieComponent implements OnInit {
     });
 
     this.requestService
-        .getData(this.movieUri  + this.movieNumber + this.apiKey)
+        .getData(this.movieUri  + this.movieNumber + this.apiKeyService.getApiKey())
         .subscribe(data => {
             this.movie = data as Movie;
         });
     this.requestService
-        .getData(this.movieUri + this.movieNumber + '/images' + this.apiKey)
+        .getData(this.movieUri + this.movieNumber + '/images' + this.apiKeyService.getApiKey())
         .subscribe(data => {
             this.images = data as Images;
         });
     this.requestService
-        .getData(this.movieUri + this.movieNumber + '/credits' + this.apiKey)
+        .getData(this.movieUri + this.movieNumber + '/credits' + this.apiKeyService.getApiKey())
         .subscribe(data => {
             this.people = data as Credits;
         });

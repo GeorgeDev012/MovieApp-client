@@ -29,7 +29,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a id="movie_{{ result.id }}" href="/movie/{{ result.id }}" (click)="onMoreInfo()" title="{{ result.title }}">More info</a>
+                    <a id="movie_{{ result.id }}" routerLink="/movie/{{ result.id }}" title="{{ result.title }}">More info</a>
                 </div>
                 <small class="text-muted">{{ result.title }}</small>
               </div>

@@ -44,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/assets/images/no-image-w138-h175.png
+src/assets/images/noImage.jpg
