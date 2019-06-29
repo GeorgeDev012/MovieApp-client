@@ -7,6 +7,7 @@ import { PeopleComponent } from './people/people.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MovieComponent } from './movie/movie.component';
+import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'people', component: PeopleComponent },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'movie/:id', component: MovieComponent}
+  {path: 'movie/:id', component: MovieComponent},
+  {path: 'movie/:id/addReview', component: ReviewComponent}
 ];
 
 @NgModule({

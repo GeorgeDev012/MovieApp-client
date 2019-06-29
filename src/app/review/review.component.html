@@ -1,0 +1,6 @@
+<form class="text-center">
+    <label for="content" class="sr-only">Content</label>
+    <textarea type="text" #content id="content" rows="10" cols="50" placeholder="Content" required autofocus></textarea>
+    <br>
+    <button class="btn btn-primary" type="button" routerLink="/movie/{{ movieId }}/" (click)="addReview(content.value)">Submit</button>
+</form>

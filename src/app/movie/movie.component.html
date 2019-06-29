@@ -1,6 +1,6 @@
 <div class="column p-4 p-md-5 text-dark">
     <div class="col-md-6">
-        <h1 class="display-4 font-italic">{{ movie?.title }}</h1>
+        <h1 class="display-4 font-italic">{{ movie?.title }} ({{ movie?.release_date }})</h1>
         <p class="lead my-3">{{ movie?.overview }}</p>
         <div *ngFor="let person of people?.crew">
             <p *ngIf="isDirector(person.job)" class="lead mb-0 text-dark font-weight-bold">Director: {{ person.name }}
@@ -12,28 +12,65 @@
     
 
     <hr />
+    
     <p class="lead mb-0 text-dark font-weight-bold">Cast</p>
     <br>
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" *ngFor="let person of people?.cast | slice:0:6">
-            <div class="column">
+            <div class="column" style="margin-bottom:30px">
                 <img src="https://image.tmdb.org/t/p/w138_and_h175_face{{ person.profile_path }}" alt="No image.">
-                <p>{{ person.name }}</p>
+                <p style="margin-bottom: 0px">{{ person.name }}</p>
+                <small>{{ person.character }}</small>
             </div>
         </div>
-        <button
-            style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
-            class="text-primary font-weight-bold" (click)="fullCast = !fullCast">Full cast...</button>
-        <br>
-        <div *ngIf="fullCast" class="row">
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" *ngFor="let person of people?.cast | slice:6">
-                <div class="column">
-                    <img src="https://image.tmdb.org/t/p/w138_and_h175_face{{ person.profile_path }}" alt="No image.">
-                    <p>{{ person.name }}</p>
+        <div class="column">
+            <button
+                style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px;"
+                class="text-primary font-weight-bold" (click)="fullCast = !fullCast">Full cast...</button>
+            <br>
+            <div *ngIf="fullCast" class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" *ngFor="let person of people?.cast | slice:6"  style="margin-bottom:30px">
+                    <div class="column">
+                        <img src="https://image.tmdb.org/t/p/w138_and_h175_face{{ person.profile_path }}" alt="No image.">
+                        <p style="margin-bottom: 0px">{{ person.name }}</p>
+                        <small>{{ person.character }}</small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <hr />
+
+    <p class="lead mb-0 text-dark font-weight-bold">Reviews</p>
+    <br>
+    <div *ngIf="reviews?.results.length > 0; else noReviews">
+        <div *ngFor="let review of reviews?.results | slice:0:1">
+            <h3>A review by {{ review.author }}</h3>
+            <p class="lead mb-0 text-dark">{{ review.content }}</p>
+            <br>
+        </div>
+        <button *ngIf="reviews?.results.length > 1"
+                style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px; margin-top: 30px"
+                class="text-primary font-weight-bold" (click)="allReviews = !allReviews">Load all Reviews...</button>
+        <div *ngIf="allReviews">
+            <div *ngFor="let review of reviews?.results | slice:1">
+                <h3>A review by {{ review.author }}</h3>
+                <p class="lead mb-0 text-dark">{{ review.content }}</p>
+                <br>
+            </div>
+        </div>
+    </div>
+    <ng-template #noReviews>No reviews have been added yet.</ng-template>
+    <a style="border: none; font-size: 20px; background-color: transparent; margin-bottom:30px;"
+        class="text-success font-weight-bold" routerLink="/movie/{{ movie?.id }}/addReview">Add Review
+    </a>
+
+
+    <hr />
+
+    <p class="lead mb-0 text-dark font-weight-bold">Images</p>
+    <br>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let poster of images?.posters | slice:0:4">
             <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{ poster.file_path }}" alt="No image."

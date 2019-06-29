@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { MovieComponent } from './movie/movie.component';
 import { ApiKeyService } from './_services/apikey.service';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ApiKeyService } from './_services/apikey.service';
     PeopleComponent,
     LoginComponent,
     RegisterComponent,
-    MovieComponent
+    MovieComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

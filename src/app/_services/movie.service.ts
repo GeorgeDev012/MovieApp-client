@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 export class MovieService {
   private movieId;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  public setUri(uri: number): void {
-    this.movieId = uri;
+  public setMovieId(id: number): void {
+    this.movieId = id;
   }
 
   public getMovieId(): number {
