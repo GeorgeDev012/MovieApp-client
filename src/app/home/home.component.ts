@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Result, Statistics } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
 import { ActivatedRoute } from '@angular/router';
-import { ApiKeyService } from '../_services/apikey.service';
+import { ApiService } from '../_services/api.service';
+import { HttpClient } from '@angular/common/http';
+import { CSRFManagerService } from '../_services/csrf-manager.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,9 @@ export class HomeComponent implements OnInit {
   totalResults: number;
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiKeyService) { }
+  constructor(private requestService: RequestService, private route: ActivatedRoute, 
+    private apiKeyService: ApiService, private http: HttpClient, 
+    private csrfManagerService: CSRFManagerService, private cookieService: CookieService) { }
 
   ngOnInit() {
     this
@@ -26,7 +31,24 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.statistics = data as Statistics;
         this.totalResults = this.statistics.total_results;
-      })
+      });
+    
+      this.http.get(
+        'http://127.0.0.1:8000/home/',
+        {
+          observe: 'response'
+        }
+      ).subscribe(
+        response => {
+          if (!this.csrfManagerService.getToken()) {
+            this.csrfManagerService.setToken(this.cookieService.get('csrftoken'));
+          }
+        },
+        errors => {
+          console.log(errors);
+        }
+  )
+  
   }
 
   onPageChange() {

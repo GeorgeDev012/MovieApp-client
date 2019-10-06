@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiKeyService {
+export class ApiService {
   private apiKey: string = '';
+  private apiUrl: string = '127.0.0.1:8000/';
 
   constructor() { }
 
   public getApiKey(): string {
     return this.apiKey;
+  }
+
+  public getAPIUrl(): string {
+    return this.apiUrl;
   }
 }

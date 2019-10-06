@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Result, Statistics } from '../_models/result.model';
 import { RequestService } from '../_services/request.service';
-import { ApiKeyService } from '../_services/apikey.service';
+import { ApiService } from '../_services/api.service';
 
 @Component({
     selector: 'app-popular',
@@ -15,7 +15,7 @@ export class PopularComponent implements OnInit {
     totalResults: number;
     page: number = 1;
 
-    constructor(private requestService: RequestService, private apiKeyService: ApiKeyService) { }
+    constructor(private requestService: RequestService, private apiKeyService: ApiService) { }
   
     ngOnInit() {
       this

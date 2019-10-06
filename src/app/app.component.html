@@ -27,12 +27,17 @@
                 </label>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul *ngIf="userAuthService?.getJWTToken() === ''" class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a routerLink="/login" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
                 <a routerLink="/register" class="nav-link">Register</a>
+            </li>
+        </ul>
+        <ul *ngIf="userAuthService?.getJWTToken() !== ''" class="navbar-nav ml-auto">
+            <li class="nav-item" (click)="logout()">
+                <a class="nav-link">Logout</a>
             </li>
         </ul>
     </div>

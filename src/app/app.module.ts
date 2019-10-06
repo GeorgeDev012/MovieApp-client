@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,8 +14,12 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { MovieComponent } from './movie/movie.component';
-import { ApiKeyService } from './_services/apikey.service';
+import { ApiService } from './_services/api.service';
 import { ReviewComponent } from './review/review.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserAuthService } from './_services/user-auth.service';
+import { CSRFManagerService } from './_services/csrf-manager.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -33,12 +37,17 @@ import { ReviewComponent } from './review/review.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     MovieService,
     RequestService,
-    ApiKeyService
+    UserAuthService,
+    CSRFManagerService,
+    ApiService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

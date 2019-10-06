@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RequestService } from '../_services/request.service';
 import { ActivatedRoute } from '@angular/router';
 import { PeoplesStatistics } from '../_models/people.model';
-import { ApiKeyService } from '../_services/apikey.service';
+import { ApiService } from '../_services/api.service';
 
 @Component({
     selector: 'app-people',
@@ -18,7 +18,7 @@ export class PeopleComponent implements OnInit {
     page = 1;
     uri: string = 'https://api.themoviedb.org/3/person/popular';
 
-    constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiKeyService) { }
+    constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiService) { }
 
     ngOnInit() {
         this.requestService

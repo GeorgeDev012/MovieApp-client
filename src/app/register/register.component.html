@@ -1,17 +1,25 @@
 <div>
-    <form name="register-form" class="form-signin mb-3" onsubmit="return validateRegisterForm()" style="text-align: center">
+    <form [formGroup]="registerForm" class="form-horizontal" name="register-form" class="form-signin mb-3 text-center" (ngSubmit)="addUser()">
         <h1 class="h3 font-weight-normal" style="padding-top: 10px">Please sign up</h1>
+        <label for="firstName" class="sr-only">First Name</label>
+        <input class="form-control" id="firstName" formControlName="first_name" placeholder="First Name" required autofocus>
+        
+        <label for="lastName" class="sr-only">Last Name</label>
+        <input class="form-control" id="lastName" formControlName="last_name" placeholder="Last Name" required>
+        
         <label for="login" class="sr-only">Login</label>
-        <input id="login" placeholder="Login" required autofocus>
-        <p></p>
+        <input class="form-control" id="login" formControlName="username" placeholder="Login" required>
+        
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" placeholder="Password" required>
-        <p></p>
+        <input class="form-control" type="password" id="inputPassword" formControlName="password" placeholder="Password"
+            required>
+        
         <label for="confirmPassword" class="sr-only">Password</label>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-        <p></p>
-        <button class="btn btn-lg btn-primary" type="submit">Sign up</button>
-        <p></p>
+        <input class="form-control" type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        
+        <button class="m-1" class="btn btn-lg btn-primary" type="submit">Sign up</button>
+        
         <div id="form-div" style="color: red"></div>
+        <div>{{ statusMessage }}</div>
     </form>
 </div>

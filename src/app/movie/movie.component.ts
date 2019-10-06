@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../_models/movie.model';
 import { Poster, Images } from '../_models/images.model';
 import { Credits } from '../_models/credits.model';
-import { ApiKeyService } from '../_services/apikey.service';
+import { ApiService } from '../_services/api.service';
 import { Reviews } from '../_models/reviews.model';
 
 @Component({
@@ -23,7 +23,7 @@ export class MovieComponent implements OnInit {
   page: number = 1;
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiKeyService) { }
+  constructor(private requestService: RequestService, private route: ActivatedRoute, private apiKeyService: ApiService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
